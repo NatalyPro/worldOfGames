@@ -1,9 +1,9 @@
 import json
 
 
-def save_data(names_file):
-    my_file = open(names_file, "a")
-    my_file.write("{'name':'nata'}")
+def save_data(names_file, data, save_mode):
+    my_file = open(names_file, save_mode)
+    my_file.write(str(data))
     my_file.close()
 
 

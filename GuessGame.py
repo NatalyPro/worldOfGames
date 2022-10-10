@@ -1,4 +1,5 @@
 import random
+from Score import add_score
 
 
 def generate_number(difficulty):
@@ -20,8 +21,9 @@ def get_guess_from_user(difficulty):
         print(f"Exception {e}")
 
 
-def compare_results(secret_number, player_number):
+def compare_results(secret_number, player_number, difficulty):
     if secret_number == player_number:
+        add_score(difficulty)
         return True
     else:
         return False
@@ -29,31 +31,31 @@ def compare_results(secret_number, player_number):
 
 def play(difficulty):
     if difficulty == 1:
-        if compare_results(generate_number(5), get_guess_from_user(5)):
+        if compare_results(generate_number(5), get_guess_from_user(5), difficulty):
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         else:
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     if difficulty == 2:
-        if compare_results(generate_number(10), get_guess_from_user(10)):
+        if compare_results(generate_number(10), get_guess_from_user(10), difficulty):
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         else:
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     if difficulty == 3:
-        if compare_results(generate_number(15), get_guess_from_user(15)):
+        if compare_results(generate_number(15), get_guess_from_user(15), difficulty):
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         else:
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     if difficulty == 4:
-        if compare_results(generate_number(20), get_guess_from_user(20)):
+        if compare_results(generate_number(20), get_guess_from_user(20), difficulty):
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         else:
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     if difficulty == 5:
-        if compare_results(generate_number(25), get_guess_from_user(25)):
+        if compare_results(generate_number(25), get_guess_from_user(25), difficulty):
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         else:
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
