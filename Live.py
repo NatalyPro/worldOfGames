@@ -3,31 +3,37 @@ def welcome(name):
 
 
 def load_game():
+    # try:
+    global game_to_play
+    global difficulty_input
     try:
         game_to_play = get_game_to_play()
         difficulty_input = get_game_difficulty()
-        data = dict({game_to_play: difficulty_input})
-        try:
-            check_game_to_play(game_to_play, 1, 4)
-        except ValueError as e:
-            if len(e.args) > 0:
-                print("Game number not found")
-                quit()
-            else:
-                print(e.args)
+    except ValueError as e:
+        if len(e.args) > 0:
+            print("Wrong data type")
+            quit()
+        else:
+            print(e.args)
 
-        try:
-            check_game_difficulty(difficulty_input, 1, 6)
-        except ValueError as e:
-            if len(e.args) > 0:
-                print("Game difficulty not found")
-                quit()
-            else:
-                print(e.args)
-        return data
-    except Exception as e:
-        print("something went wrong")
-        print(e.args)
+    check_game_to_play(game_to_play, 1, 4)
+    check_game_difficulty(difficulty_input, 1, 6)
+    data = dict({game_to_play: difficulty_input})
+    # try:
+    # check_game_difficulty(difficulty_input, 1, 6)
+    # except ValueError as e:
+    # if len(e.args) > 0:
+    # print("Game difficulty not found")
+    # quit()
+    # else:
+    # print(e.args)
+    return data
+
+
+# except ValueError as e:
+# print("something went wrong")
+# quit()
+# print(e.args)
 
 
 def get_game_to_play():
@@ -45,13 +51,13 @@ def get_game_difficulty():
 
 def check_game_difficulty(game_difficulty, start, end):
     if game_difficulty not in range(start, end):
-        raise ValueError('Game difficulty not found')
+        raise ValueError("Game difficulty not found")
     else:
         print(f"Game difficulty that was selected: {game_difficulty} \n Setting game difficulty...")
 
 
-def check_game_to_play(game_to_play, start, end):
-    if game_to_play not in range(start, end):
+def check_game_to_play(game, start, end):
+    if game not in range(start, end):
         raise ValueError("Game number not found")
     else:
-        print(f"Game that was selected: {game_to_play} \n Starting the game...")
+        print(f"Game that was selected: {game} \n Starting the game...")
