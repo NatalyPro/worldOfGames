@@ -1,52 +1,62 @@
+import unittest
+
+
 def welcome(name):
     return f"Hello {name} and welcome to the World of Games (WoG).Here you can find many cool games to play."
 
 
-def load_game():
-    # try:
-    global game_to_play
-    global difficulty_input
-    try:
-        game_to_play = get_game_to_play()
-        difficulty_input = get_game_difficulty()
-    except ValueError as e:
-        if len(e.args) > 0:
-            print("Wrong data type")
-            quit()
-        else:
-            print(e.args)
+def load_game_not_used():
+    game_to_play = get_game_to_play()
 
-    check_game_to_play(game_to_play, 1, 4)
-    check_game_difficulty(difficulty_input, 1, 6)
-    data = dict({game_to_play: difficulty_input})
-    # try:
-    # check_game_difficulty(difficulty_input, 1, 6)
-    # except ValueError as e:
-    # if len(e.args) > 0:
-    # print("Game difficulty not found")
-    # quit()
-    # else:
-    # print(e.args)
+    if game_to_play.isnumeric():
+        selected_game_to_play = int(game_to_play)
+        assert selected_game_to_play in range(1, 3)
+    else:
+        raise ValueError("Game number not valid")
+
+    difficulty_input = get_game_difficulty()
+
+    if difficulty_input.isnumeric():
+        selected_difficulty_input = int(difficulty_input)
+        assert selected_difficulty_input in range(1, 6)
+    else:
+        raise ValueError("Game difficulty not valid")
+
+    data = dict({selected_game_to_play: selected_difficulty_input})
     return data
 
 
-# except ValueError as e:
-# print("something went wrong")
-# quit()
-# print(e.args)
+def load_game():
+    selected_game = get_game_to_play()
+    game = get_value_selected(selected_game, 1, 3, 'game')
+
+    selected_difficulty = get_game_difficulty()
+    difficulty = get_value_selected(selected_difficulty, 1, 6, 'difficulty')
+
+    data = dict({game: difficulty})
+    return data
+
+
+def get_value_selected(received_value, start_range, end_range, value_name):
+    if received_value.isnumeric():
+        value_to_return = int(received_value)
+        assert value_to_return in range(start_range, end_range)
+    else:
+        raise ValueError(f"{value_name} number not valid")
+    return value_to_return
 
 
 def get_game_to_play():
-    return int(input("Please choose a game to play: \n"
-                     "1. Memory Game - a sequence of numbers will appear for 1 second and you have to guess it "
-                     "back: \n"
-                     "2. Guess Game - guess a number and see if you chose like the computer \n"
-                     "3. Currency Roulette - try and guess the value of a random amount of USD in ILS \n"
-                     "Game to play: "))
+    return input("Please choose a game to play: \n"
+                 "1. Memory Game - a sequence of numbers will appear for 1 second and you have to guess it "
+                 "back: \n"
+                 "2. Guess Game - guess a number and see if you chose like the computer \n"
+                 "3. Currency Roulette - try and guess the value of a random amount of USD in ILS \n"
+                 "Game to play: ")
 
 
 def get_game_difficulty():
-    return int(input("Please choose game difficulty from 1 to 5: "))
+    return input("Please choose game difficulty from 1 to 5: ")
 
 
 def check_game_difficulty(game_difficulty, start, end):
