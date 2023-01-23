@@ -5,36 +5,55 @@ def welcome(name):
     return f"Hello {name} and welcome to the World of Games (WoG).Here you can find many cool games to play."
 
 
-def load_game_not_used():
-    game_to_play = get_game_to_play()
+#def load_game_not_used():
+    #vgame_to_play = get_game_to_play()
 
-    if game_to_play.isnumeric():
-        selected_game_to_play = int(game_to_play)
-        assert selected_game_to_play in range(1, 3)
-    else:
-        raise ValueError("Game number not valid")
+    #if game_to_play.isnumeric():
+    #    selected_game_to_play = int(game_to_play)
+    #   assert selected_game_to_play in range(1, 3)
+    #else:
+    #    raise ValueError("Game number not valid")
 
-    difficulty_input = get_game_difficulty()
+    #difficulty_input = get_game_difficulty(1, 6)
 
-    if difficulty_input.isnumeric():
-        selected_difficulty_input = int(difficulty_input)
-        assert selected_difficulty_input in range(1, 6)
-    else:
-        raise ValueError("Game difficulty not valid")
+    #if difficulty_input.isnumeric():
+    #   selected_difficulty_input = int(difficulty_input)
+    #   assert selected_difficulty_input in range(1, 6)
+    #else:
+    #   raise ValueError("Game difficulty not valid")
 
-    data = dict({selected_game_to_play: selected_difficulty_input})
-    return data
+    #data = dict({selected_game_to_play: selected_difficulty_input})
+    #return data
 
 
-def load_game():
+def select_game():
+    global game
+
     selected_game = get_game_to_play()
-    game = get_value_selected(selected_game, 1, 3, 'game')
+    if get_value_selected_2(selected_game, 1, 4, 'game'):
+        game = get_value_selected_2(selected_game, 1, 4, 'game')
+    else:
+        exit()
 
-    selected_difficulty = get_game_difficulty()
-    difficulty = get_value_selected(selected_difficulty, 1, 6, 'difficulty')
+    #selected_difficulty = get_game_difficulty(1, 6)
+    #if get_value_selected_2(selected_difficulty, 'difficulty'):
+        #difficulty = get_value_selected_2(selected_game, 'difficulty')
+        #else:
+        #exit()
 
-    data = dict({game: difficulty})
+    data = dict({game: game})
     return data
+
+
+def select_difficulty():
+    global difficulty
+    selected_difficulty = get_game_difficulty()
+    if get_value_selected_2(selected_difficulty, 1, 6, 'difficulty'):
+        difficulty = get_value_selected_2(selected_difficulty, 1, 6, 'difficulty')
+    else:
+        exit()
+
+    return difficulty
 
 
 def get_value_selected(received_value, start_range, end_range, value_name):
@@ -44,6 +63,19 @@ def get_value_selected(received_value, start_range, end_range, value_name):
     else:
         raise ValueError(f"{value_name} number not valid")
     return value_to_return
+
+
+def get_value_selected_2(received_value, start_range, end_range, value_name):
+    if received_value.isnumeric():
+        value_to_return = int(received_value)
+        if value_to_return in range(start_range, end_range):
+            return value_to_return
+        else:
+            print(f"{value_name} number not valid")
+            return False
+    else:
+        print(f"{value_name} number not numeric")
+        return False
 
 
 def get_game_to_play():
@@ -56,7 +88,7 @@ def get_game_to_play():
 
 
 def get_game_difficulty():
-    return input("Please choose game difficulty from 1 to 5: ")
+    return input(f"Please choose game difficulty from 1 to 5: ")
 
 
 def check_game_difficulty(game_difficulty, start, end):
