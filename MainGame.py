@@ -1,4 +1,3 @@
-#import MainScores
 import CurrencyRouletteGame
 import GuessGame
 import MemoryGame
@@ -13,8 +12,6 @@ for x in game_data.keys():
     if game_data.keys().__contains__(2):
         difficulty = select_difficulty()
         GuessGame.play(difficulty)
-        #play(game_data.get(2))
-        #MainScores.score_server()
     elif game_data.keys().__contains__(1):
         MemoryGame.play()
     elif game_data.keys().__contains__(3):

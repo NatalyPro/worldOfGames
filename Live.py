@@ -1,4 +1,3 @@
-import unittest
 
 
 def welcome(name):

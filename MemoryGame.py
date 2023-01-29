@@ -1,5 +1,4 @@
 import random
-import this
 import time
 
 from GuessGame import get_guess_from_user_2
@@ -74,5 +73,5 @@ def select_difficulty(diff_from, diff_to):
 
 def show_generated_list_to_player(generated_list):
     print("generated list " + str(generated_list))
-    time.sleep(0.7)
+    time.sleep(7)
     print("ending to show generated list to player")
