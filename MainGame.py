@@ -1,4 +1,5 @@
 #import MainScores
+import CurrencyRouletteGame
 import GuessGame
 import MemoryGame
 from Live import select_game, welcome, select_difficulty
@@ -16,5 +17,7 @@ for x in game_data.keys():
         #MainScores.score_server()
     elif game_data.keys().__contains__(1):
         MemoryGame.play()
+    elif game_data.keys().__contains__(3):
+        CurrencyRouletteGame.play()
     else:
-        print("ERROR ! Game is not created yet")
+        print("ERROR ! Game does not exist")

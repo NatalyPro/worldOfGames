@@ -13,19 +13,19 @@ def generate_sequence(difficulty, from_number, to_number):
     return generated_list
 
 
-def check_difficulty_is_correct(difficulty, to_difficulty, from_difficulty):
-    if difficulty.isnumeric():
-        difficulty_int = int(difficulty)
+def check_value_is_correct(value, to_amount, from_amount, value_name):
+    if value.isnumeric():
+        value_int = int(value)
 
-        if difficulty_int == 0 or difficulty_int > to_difficulty or difficulty_int < from_difficulty:
-            print("Invalid difficulty selected")
+        if value_int == 0 or value_int > to_amount or value_int < from_amount:
+            print(f"Invalid {value_name} selected")
             exit()
         else:
-            correct_difficulty = difficulty_int
+            correct_value = value_int
             print()
-            return correct_difficulty
+            return correct_value
     else:
-        print("difficulty not numeric")
+        print(f"{value_name} not numeric")
         exit()
 
 
@@ -57,8 +57,8 @@ def is_list_equal(generated_list, player_list):
 
 
 def play():
-    selected_difficulty = select_difficulty()
-    checked_difficulty = check_difficulty_is_correct(selected_difficulty, 10, 5)
+    selected_difficulty = select_difficulty(5, 10)
+    checked_difficulty = check_value_is_correct(selected_difficulty, 10, 5, 'difficulty')
     generated_list = generate_sequence(checked_difficulty, 1, 101)
     show_generated_list_to_player(generated_list)
     if is_list_equal(generated_list, get_list_from_user(selected_difficulty)):
@@ -67,8 +67,8 @@ def play():
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 
-def select_difficulty():
-    difficulty = input("Please choose difficulty from 5 to 10: \n")
+def select_difficulty(diff_from, diff_to):
+    difficulty = input(f"Please choose difficulty from {diff_from} to {diff_to}: \n")
     return difficulty
 
 
