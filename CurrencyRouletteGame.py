@@ -5,6 +5,9 @@ from MemoryGame import select_difficulty, check_value_is_correct, is_list_equal
 from GuessGame import generate_number
 import math
 
+from Score import add_score
+from Utils import screen_cleaner
+
 
 def get_currency_exchange_rate(currency_from, currency_to, start_date, end_date):
     request_url = f'https://fxds-public-exchange-rates-api.oanda.com/cc-api/currencies?base={currency_from}&quote={currency_to}&data_type=general_currency_pair&start_date={start_date}&end_date={end_date}'
@@ -41,6 +44,7 @@ def get_yesterday_date():
 
 
 def play():
+    screen_cleaner()
     selected_difficulty = check_value_is_correct(select_difficulty(1, 5), 5, 1, 'difficulty')
     show_generated_number_to_player = generate_number(101)
     number_from_player = check_value_is_correct(get_guess_number_from_player(show_generated_number_to_player), 99999999,
@@ -48,6 +52,7 @@ def play():
     current_exchange_rate = get_currency_exchange_rate('USD', 'ILS', get_yesterday_date(), date.today())
     if get_money_interval(calculate_exchange_rate_with_amount(current_exchange_rate, show_generated_number_to_player),
                           selected_difficulty, number_from_player):
+        add_score(selected_difficulty)
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     else:
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")

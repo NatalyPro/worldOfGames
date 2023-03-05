@@ -1,28 +1,26 @@
-
-
 def welcome(name):
     return f"Hello {name} and welcome to the World of Games (WoG).Here you can find many cool games to play."
 
 
-#def load_game_not_used():
-    #vgame_to_play = get_game_to_play()
+# def load_game_not_used():
+# vgame_to_play = get_game_to_play()
 
-    #if game_to_play.isnumeric():
-    #    selected_game_to_play = int(game_to_play)
-    #   assert selected_game_to_play in range(1, 3)
-    #else:
-    #    raise ValueError("Game number not valid")
+# if game_to_play.isnumeric():
+#    selected_game_to_play = int(game_to_play)
+#   assert selected_game_to_play in range(1, 3)
+# else:
+#    raise ValueError("Game number not valid")
 
-    #difficulty_input = get_game_difficulty(1, 6)
+# difficulty_input = get_game_difficulty(1, 6)
 
-    #if difficulty_input.isnumeric():
-    #   selected_difficulty_input = int(difficulty_input)
-    #   assert selected_difficulty_input in range(1, 6)
-    #else:
-    #   raise ValueError("Game difficulty not valid")
+# if difficulty_input.isnumeric():
+#   selected_difficulty_input = int(difficulty_input)
+#   assert selected_difficulty_input in range(1, 6)
+# else:
+#   raise ValueError("Game difficulty not valid")
 
-    #data = dict({selected_game_to_play: selected_difficulty_input})
-    #return data
+# data = dict({selected_game_to_play: selected_difficulty_input})
+# return data
 
 
 def select_game():
@@ -34,14 +32,33 @@ def select_game():
     else:
         exit()
 
-    #selected_difficulty = get_game_difficulty(1, 6)
-    #if get_value_selected_2(selected_difficulty, 'difficulty'):
-        #difficulty = get_value_selected_2(selected_game, 'difficulty')
-        #else:
-        #exit()
+    # selected_difficulty = get_game_difficulty(1, 6)
+    # if get_value_selected_2(selected_difficulty, 'difficulty'):
+    # difficulty = get_value_selected_2(selected_game, 'difficulty')
+    # else:
+    # exit()
 
     data = dict({game: game})
     return data
+
+
+def option_to_continue_request():
+    return input("Would you like to continue playing: \n"
+                 "1 for yes: \n"
+                 "2 for no \n")
+
+
+def check_if_player_wants_to_continue():
+    attempts = 0
+    while attempts < 3:
+        if get_value_selected_2(option_to_continue_request(), 1, 2, 'players response'):
+            if get_value_selected_2(option_to_continue_request(), 1, 2, 'players response') == 2:
+                return False
+        else:
+            print("ERROR ! Wrong value selected . Try again")
+    if attempts == 3:
+        print("Too many attempts. Exiting program.")
+        return False
 
 
 def select_difficulty():

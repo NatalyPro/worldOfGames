@@ -1,5 +1,7 @@
 import random
 import time
+from Score import add_score
+from Utils import screen_cleaner
 
 from GuessGame import get_guess_from_user_2
 
@@ -56,11 +58,13 @@ def is_list_equal(generated_list, player_list):
 
 
 def play():
+    screen_cleaner()
     selected_difficulty = select_difficulty(5, 10)
     checked_difficulty = check_value_is_correct(selected_difficulty, 10, 5, 'difficulty')
     generated_list = generate_sequence(checked_difficulty, 1, 101)
     show_generated_list_to_player(generated_list)
     if is_list_equal(generated_list, get_list_from_user(selected_difficulty)):
+        add_score(checked_difficulty)
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU WON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     else:
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! YOU LOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -73,5 +77,5 @@ def select_difficulty(diff_from, diff_to):
 
 def show_generated_list_to_player(generated_list):
     print("generated list " + str(generated_list))
-    time.sleep(7)
+    screen_cleaner()
     print("ending to show generated list to player")

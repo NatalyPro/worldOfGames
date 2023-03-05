@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def score_server():
-    try:
-        score = get_score()
+    score = get_score()
+    if bool(score):
         return f"""
             <html>
         <head>
@@ -19,7 +19,7 @@ def score_server():
         </body>
         </html>
             """
-    except ValueError as e:
+    else:
         return f"""
         <html>
 <head>
@@ -33,4 +33,6 @@ def score_server():
 """
 
 
-app.run(port=5000)
+if __name__ == '__main__':
+    app.run()
+# app.run(port=5000)
