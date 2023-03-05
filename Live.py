@@ -48,15 +48,34 @@ def option_to_continue_request():
                  "2 for no \n")
 
 
-def check_if_player_wants_to_continue():
-    attempts = 0
-    while attempts < 3:
-        if get_value_selected_2(option_to_continue_request(), 1, 2, 'players response'):
-            if get_value_selected_2(option_to_continue_request(), 1, 2, 'players response') == 2:
-                return False
+def check_if_player_wants_to_continue_not_used():
+    value_selected = 0
+    while value_selected < 3:
+        selected_option = option_to_continue_request()
+        if get_value_selected_2(selected_option, 1, 2, 'players response'):
+            if get_value_selected_2(selected_option, 1, 2, 'players response') == 2:
+                value_selected = False
+            else:
+                value_selected = True
         else:
             print("ERROR ! Wrong value selected . Try again")
-    if attempts == 3:
+    if value_selected == 3:
+        print("Too many attempts. Exiting program.")
+        return False
+
+
+def check_if_player_wants_to_continue():
+    global x
+    for x in range(3):
+        selected_option = option_to_continue_request()
+        if get_value_selected_2(selected_option, 1, 3, 'players response'):
+            if get_value_selected_2(selected_option, 1, 3, 'players response') == 2:
+                return False
+            else:
+                return True
+        else:
+            print("ERROR ! Wrong value selected . Try again")
+    if x == 3:
         print("Too many attempts. Exiting program.")
         return False
 

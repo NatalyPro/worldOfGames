@@ -58,7 +58,7 @@ def is_list_equal(generated_list, player_list):
 
 
 def play():
-    screen_cleaner()
+    # screen_cleaner()
     selected_difficulty = select_difficulty(5, 10)
     checked_difficulty = check_value_is_correct(selected_difficulty, 10, 5, 'difficulty')
     generated_list = generate_sequence(checked_difficulty, 1, 101)

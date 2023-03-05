@@ -14,7 +14,7 @@ def check_if_player__wants_to_continue():
     game_continuation = check_if_player_wants_to_continue()
 
 
-if game_continuation:
+while game_continuation:
     game_data = select_game()
 
     for x in game_data.keys():
