@@ -44,7 +44,7 @@ def select_game():
 
 def option_to_continue_request():
     return input("Would you like to continue playing: \n"
-                 "1 for yes: \n"
+                 "1 for yes \n"
                  "2 for no \n")
 
 

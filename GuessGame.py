@@ -1,10 +1,12 @@
 import random
 from Score import add_score
+from Utils import screen_cleaner
 
 
 def generate_number(difficulty):
     secret_number = random.randint(1, difficulty)
     print(f"Random secret number {secret_number}")
+    screen_cleaner()
     return secret_number
 
 
